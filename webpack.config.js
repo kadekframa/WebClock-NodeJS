@@ -6,5 +6,35 @@ module.exports = {
         path: path.resolve(__dirname, "dist"),
         filename: "bundle.js"
     },
-    mode: "production"
+    mode: "production",
+    module: {
+        rules: [
+            // style dan css loader.
+            {
+                test: /\.css$/,
+                use: [
+                    {
+                        loader: "style-loader"
+                    },
+                    {
+                        loader: "css-loader"
+                    }
+                ]
+            },
+            // babel loader.
+            {
+                test: /\.js$/,
+                exclude: "/node_modules/",
+                use: [
+                    {
+                        loader: "babel-loader",
+                        options: {
+                            presets: ["@babel/preset-env"]
+                        }
+                    }
+                ]
+
+            }
+        ]
+    }
 }
